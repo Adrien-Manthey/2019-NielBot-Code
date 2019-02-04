@@ -18,6 +18,9 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.XboxController;
 
+import frc.robot.pidandgyro.ADXRS453Gyro;
+import frc.robot.pidandgyro.GyroPID;
+import frc.robot.pidandgyro.Gyroscope;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
