@@ -109,6 +109,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+    SmartDashboard.putNumber("gyro", gyro.getAngle());
 
   }
 
@@ -117,6 +118,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    //gyro and pid
+    SmartDashboard.putNumber("gyro", gyro.getAngle());
+		SmartDashboard.putNumber("GyroAngle", gyro.getAngle());
+		SmartDashboard.putNumber("GyroPos", gyro.getPos());
+		SmartDashboard.putNumber("GyroRate", gyro.getRate());
+		SmartDashboard.putNumber("GyroTemp", gyro.getTemp());
     // MechanumDrive for Remote drive (comment out for Joydrive)
     Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft), -1*R_C.getY(GenericHID.Hand.kLeft), R_C.getX(GenericHID.Hand.kRight));
     // MechanumDrive for JoyDrive(comment out for MechanumDrive)(needs to be tested again, needs some adjustments)
@@ -164,5 +171,19 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    SmartDashboard.putNumber("GyroAngle", gyro.getAngle());
+		SmartDashboard.putNumber("GyroPos", gyro.getPos());
+		SmartDashboard.putNumber("GyroRate", gyro.getRate());
+		SmartDashboard.putNumber("GyroTemp", gyro.getTemp());
+		//SmartDashboard.putNumber("codep", P);
+		
+		SmartDashboard.putNumber("robotP", P);
+		SmartDashboard.putNumber("robotI", I);
+		SmartDashboard.putNumber("robotD", D);
+		
+		P = SmartDashboard.getNumber("P", 0);
+		I = SmartDashboard.getNumber("I", 0);
+		D = SmartDashboard.getNumber("D", 0);
+		//turner.setPID(P, I, D);
   }
 }
