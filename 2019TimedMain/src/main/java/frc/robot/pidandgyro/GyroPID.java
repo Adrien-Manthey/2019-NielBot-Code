@@ -1,6 +1,6 @@
-package org.usfirst.frc.team4229.robot.subsystems;
+package frc.robot.pidandgyro;
 
-import org.usfirst.frc.team4229.robot.Robot;
+import frc.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 

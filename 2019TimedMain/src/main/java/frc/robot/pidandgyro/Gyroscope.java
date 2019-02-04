@@ -1,5 +1,5 @@
-package org.usfirst.frc.team4229.robot.subsystems;
-import org.usfirst.frc.team4229.robot.ADXRS453Gyro;
+package frc.robot.pidandgyro;
+import frc.robot.pidandgyro.ADXRS453Gyro;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
