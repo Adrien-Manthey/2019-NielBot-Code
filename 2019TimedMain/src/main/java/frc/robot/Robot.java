@@ -44,6 +44,21 @@ public class Robot extends TimedRobot {
     Spark F_R_D = new Spark(3);
     Spark B_L_D = new Spark(2);
     Spark B_R_D = new Spark(1);
+
+    //Mechanum Drive Train Decleration (Same for both Controller Types , please do not change)
+    MecanumDrive Robo_Drive = new MecanumDrive(F_L_D,B_L_D,F_R_D,B_R_D);
+
+    //Setting up Pnumatics , please do not alter or change unless your commenting out stuff your not useing
+        //Setting up Compressor
+    Compressor Comp = new Compressor(0);
+
+        //Setting up Solenoids , solenoids are named based on there port #
+    Solenoid S0 = new Solenoid(0); // Currently being used for the hatch intake
+    //Solenoid S1 = new Solenoid(1); //Currently Unused
+    //Solenoid S2 = new Solenoid(2); //Currently Unused
+    //Solenoid S3 = new Solenoid(3); //Currently Unused
+
+
     
 
     
