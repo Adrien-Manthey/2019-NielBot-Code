@@ -16,6 +16,7 @@ import frc.robot.PixyTest;
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.XboxController;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,6 +37,10 @@ public class Robot extends TimedRobot {
     //Joystick Declerations (comment out for RemoteDrive)
     Joystick J1 = new Joystick(0);
     Joystick J2 = new Joystick(1);
+    //Remote Decleration (comment out for JoyDrive)
+    XboxController R_C_1 = new XboxController(0);
+
+
     Spark LDM = new Spark(0);
     Spark RDM = new Spark(1);
     
