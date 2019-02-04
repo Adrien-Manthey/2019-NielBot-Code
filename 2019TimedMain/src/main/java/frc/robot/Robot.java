@@ -104,7 +104,7 @@ public class Robot extends TimedRobot {
     // MechanumDrive for Remote drive (comment out for Joydrive)
     Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft), -1*R_C.getY(GenericHID.Hand.kLeft), R_C.getX(GenericHID.Hand.kRight));
     // MechanumDrive for JoyDrive(comment out for MechanumDrive)(needs to be tested again, needs some adjustments)
-    Robo_Drive.driveCartesian(Left_Joy.getX(), -1*Left_Joy.getY(), Left_Joy.getZ());
+    //Robo_Drive.driveCartesian(Left_Joy.getX(), -1*Left_Joy.getY(), Left_Joy.getZ());
 
     //Pnumatics for Hatch Pannel intake system useing Remote drive (Comment out for JoyDrive)
     c.setClosedLoopControl(true);
