@@ -54,6 +54,12 @@ public class Robot extends TimedRobot {
       //Solenoid S2 = new Solenoid(2); //Currently Unused
       //Solenoid S3 = new Solenoid(3); //Currently Unused
 
+      //pid and gyro
+      public static double P = 0.3;
+      public static double I = 0.000001;
+      public static double D = 0.36;
+      public static ADXRS453Gyro gyro = new ADXRS453Gyro();
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -65,7 +71,14 @@ public class Robot extends TimedRobot {
     //CameraServer.getInstance().addAxisCamera("10.42.29.90"); //axis camera
 		CameraServer.getInstance().startAutomaticCapture(); //USB camera
 		Mat image = new Mat();
-		CameraServer.getInstance().getVideo().grabFrame(image);
+    CameraServer.getInstance().getVideo().grabFrame(image);
+    
+    gyro.startThread();
+		gyro.calibrate();
+		gyro.reset();
+		SmartDashboard.putNumber("P", 0.3);
+		SmartDashboard.putNumber("I", 0.000001);
+		SmartDashboard.putNumber("D", 0.36);
 
 
 
