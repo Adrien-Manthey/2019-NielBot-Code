@@ -123,6 +123,7 @@ public class Robot extends TimedRobot {
 
     }
     //Pnumatics for Hatch Pannel intake system useing JoyDrive (Comment out for Remote Drive)
+    /**
     c.setClosedLoopControl(true);
 
     if(J1.getRawButton(1)) {
@@ -138,6 +139,7 @@ public class Robot extends TimedRobot {
     else{
       
     }
+     */
 
   }
 
