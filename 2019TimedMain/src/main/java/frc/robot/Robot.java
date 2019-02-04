@@ -27,6 +27,30 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class Robot extends TimedRobot {
 
+      //Joystick Declerations (comment out for RemoteDrive)
+      Joystick J1 = new Joystick(0);
+      Joystick J2 = new Joystick(1);
+      //Remote Decleration (comment out for JoyDrive)
+      XboxController R_C_1 = new XboxController(0);
+      // Drive Train Motor Controllers Declerations (same for both Controller types, do not change)
+      Spark F_L_D = new Spark(0);
+      Spark F_R_D = new Spark(3);
+      Spark B_L_D = new Spark(2);
+      Spark B_R_D = new Spark(1);
+  
+      //Mechanum Drive Train Decleration (Same for both Controller Types , please do not change)
+      MecanumDrive Robo_Drive = new MecanumDrive(F_L_D,B_L_D,F_R_D,B_R_D);
+  
+      //Setting up Pnumatics , please do not alter or change unless your commenting out stuff your not useing
+          //Setting up Compressor
+      Compressor Comp = new Compressor(0);
+  
+          //Setting up Solenoids , solenoids are named based on there port #
+      Solenoid S0 = new Solenoid(0); // Currently being used for the hatch intake
+      //Solenoid S1 = new Solenoid(1); //Currently Unused
+      //Solenoid S2 = new Solenoid(2); //Currently Unused
+      //Solenoid S3 = new Solenoid(3); //Currently Unused
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -34,29 +58,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    //Joystick Declerations (comment out for RemoteDrive)
-    Joystick J1 = new Joystick(0);
-    Joystick J2 = new Joystick(1);
-    //Remote Decleration (comment out for JoyDrive)
-    XboxController R_C_1 = new XboxController(0);
-    // Drive Train Motor Controllers Declerations (same for both Controller types, do not change)
-    Spark F_L_D = new Spark(0);
-    Spark F_R_D = new Spark(3);
-    Spark B_L_D = new Spark(2);
-    Spark B_R_D = new Spark(1);
+    // Camera stuff, do not adjust unless you know what your doing
+    //CameraServer.getInstance().addAxisCamera("10.42.29.90"); //axis camera
+		CameraServer.getInstance().startAutomaticCapture(); //USB camera
+		Mat image = new Mat();
+		CameraServer.getInstance().getVideo().grabFrame(image);
 
-    //Mechanum Drive Train Decleration (Same for both Controller Types , please do not change)
-    MecanumDrive Robo_Drive = new MecanumDrive(F_L_D,B_L_D,F_R_D,B_R_D);
-
-    //Setting up Pnumatics , please do not alter or change unless your commenting out stuff your not useing
-        //Setting up Compressor
-    Compressor Comp = new Compressor(0);
-
-        //Setting up Solenoids , solenoids are named based on there port #
-    Solenoid S0 = new Solenoid(0); // Currently being used for the hatch intake
-    //Solenoid S1 = new Solenoid(1); //Currently Unused
-    //Solenoid S2 = new Solenoid(2); //Currently Unused
-    //Solenoid S3 = new Solenoid(3); //Currently Unused
 
 
     
@@ -76,17 +83,6 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
   }
 
-  /**
-   * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable
-   * chooser code works with the Java SmartDashboard. If you prefer the
-   * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-   * getString line to get the auto name from the text box below the Gyro
-   *
-   * <p>You can add additional auto modes by adding additional comparisons to
-   * the switch structure below with additional strings. If using the
-   * SendableChooser make sure to add them to the chooser code above as well.
-   */
   @Override
   public void autonomousInit() {
 
@@ -105,7 +101,44 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    
+    // MechanumDrive for Remote drive (comment out for Joydrive)
+    Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft), -1*R_C.getY(GenericHID.Hand.kLeft), R_C.getX(GenericHID.Hand.kRight));
+    // MechanumDrive for JoyDrive(comment out for MechanumDrive)(needs to be tested again, needs some adjustments)
+    Robo_Drive.driveCartesian(Left_Joy.getX(), -1*Left_Joy.getY(), Left_Joy.getZ());
+
+    //Pnumatics for Hatch Pannel intake system useing Remote drive (Comment out for JoyDrive)
+    c.setClosedLoopControl(true);
+
+		if(R_C.getRawButton(1)) {
+			S0.set(true);
+			Timer.delay(0.001);
+
+    }
+    else if(R_C.getRawButton(2)){
+      S0.set(false);
+      Timer.delay(0.001);
+    }
+
+		else {
+
+    }
+    //Pnumatics for Hatch Pannel intake system useing JoyDrive (Comment out for Remote Drive)
+    c.setClosedLoopControl(true);
+
+    if(J1.getRawButton(1)) {
+      S0.set(true);
+      Timer.delay(0.001);
+    }
+
+    else if(J2.getRawButton(1)) {
+      SO.set(false);
+      Timer.delay(0.001);
+    }
+
+    else{
+      
+    }
+
   }
 
   /**
