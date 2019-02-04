@@ -39,10 +39,11 @@ public class Robot extends TimedRobot {
     Joystick J2 = new Joystick(1);
     //Remote Decleration (comment out for JoyDrive)
     XboxController R_C_1 = new XboxController(0);
-
-
-    Spark LDM = new Spark(0);
-    Spark RDM = new Spark(1);
+    // Drive Train Motor Controllers Declerations (same for both Controller types, do not change)
+    Spark F_L_D = new Spark(0);
+    Spark F_R_D = new Spark(3);
+    Spark B_L_D = new Spark(2);
+    Spark B_R_D = new Spark(1);
     
 
     
