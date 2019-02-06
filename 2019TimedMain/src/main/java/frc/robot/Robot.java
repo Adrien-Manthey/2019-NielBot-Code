@@ -17,7 +17,10 @@ import edu.wpi.cscore.AxisCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.XboxController;
-
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.GenericHID;
 import frc.robot.pidandgyro.ADXRS453Gyro;
 import frc.robot.pidandgyro.GyroPID;
 import frc.robot.pidandgyro.Gyroscope;
@@ -125,19 +128,19 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("GyroRate", gyro.getRate());
 		SmartDashboard.putNumber("GyroTemp", gyro.getTemp());
     // MechanumDrive for Remote drive (comment out for Joydrive)
-    Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft), -1*R_C.getY(GenericHID.Hand.kLeft), R_C.getX(GenericHID.Hand.kRight));
+    Robo_Drive.driveCartesian(R_C_1.getX(GenericHID.Hand.kLeft), -1*R_C_1.getY(GenericHID.Hand.kLeft), R_C_1.getX(GenericHID.Hand.kRight));
     // MechanumDrive for JoyDrive(comment out for MechanumDrive)(needs to be tested again, needs some adjustments)
     //Robo_Drive.driveCartesian(Left_Joy.getX(), -1*Left_Joy.getY(), Left_Joy.getZ());
 
     //Pnumatics for Hatch Pannel intake system useing Remote drive (Comment out for JoyDrive)
-    c.setClosedLoopControl(true);
+    Comp.setClosedLoopControl(true);
 
-		if(R_C.getRawButton(1)) {
+		if(R_C_1.getRawButton(1)) {
 			S0.set(true);
 			Timer.delay(0.001);
 
     }
-    else if(R_C.getRawButton(2)){
+    else if(R_C_1.getRawButton(2)){
       S0.set(false);
       Timer.delay(0.001);
     }
