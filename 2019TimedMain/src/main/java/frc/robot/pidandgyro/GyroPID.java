@@ -35,6 +35,6 @@ public class GyroPID extends PIDSubsystem {
     protected void usePIDOutput(double output) {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
-    	Robot.drivetrain.drive(-output, output);
+    	Robot.drive(-output, output);
     }
 }
